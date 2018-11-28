@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CompanyRepository } from './company.repository';
-import { Company } from 'src/app/models/company.model';
 import { tap, exhaustMap } from 'rxjs/operators';
 
 describe('CompanyRepository', () => {

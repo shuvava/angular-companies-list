@@ -3,8 +3,8 @@
  * it immolates http work
 */
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
-import { delay, exhaustMap, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { exhaustMap, tap } from 'rxjs/operators';
 import { Company } from 'src/app/models/company.model';
 import { CompanyRepository } from './company.repository';
 

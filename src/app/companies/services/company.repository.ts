@@ -3,7 +3,7 @@
  * it immolates http work
 */
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { delay, mergeMap, tap } from 'rxjs/operators';
 import { companiesMock } from './company.mockData';
 import { Company } from 'src/app/models/company.model';
