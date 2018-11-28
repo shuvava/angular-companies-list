@@ -4,9 +4,9 @@
 */
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
-import { delay, mergeMap, tap } from 'rxjs/operators';
-import { companiesMock } from './company.mockData';
+import { delay, exhaustMap, tap } from 'rxjs/operators';
 import { Company } from 'src/app/models/company.model';
+import { CompanyRepository } from './company.repository';
 
 @Injectable({
   providedIn: 'root'
@@ -16,47 +16,51 @@ export class CompanyService {
   private data: Subject<Company[]> = new Subject();
   data$: Observable<Company[]> = this.data.asObservable();
   private isDataLoaded = false;
-  constructor() { }
+  constructor(private companyRepository: CompanyRepository) { }
 
   getItems(): Observable<Company[]> {
-    // return of(1)
-    //   .pipe(
-    //     delay(100),
-    //     mergeMap(() => of(companiesMock))
-    //   );
-    if (!this.isDataLoaded) {
-      of(1)
-        .pipe(
-          delay(100),
-          tap(() => {
-            this.items = companiesMock;
-            this.emitUpdateEvent();
-          })
-        );
-        this.isDataLoaded = true;
+    if (this.isDataLoaded) {
+        return this.data$;
     }
 
-      return this.data$;
+    return this.companyRepository
+      .getItems()
+      .pipe(
+        exhaustMap((items) => {
+          this.items = items;
+          this.isDataLoaded = true;
+          setTimeout(() => this.emitUpdateEvent(), 10);
+          return this.data$;
+        }),
+      );
   }
 
   private emitUpdateEvent() {
     this.data.next(this.items);
   }
 
-  addItem(item: Company) {
-    of(1)
-    .pipe(
-      delay(100),
-      tap(() => {
-        this.items = companiesMock;
-        this.emitUpdateEvent();
-      })
-    );
-    this.items.push(item);
-    this.emitUpdateEvent();
+  addItem(item: Company): Observable<boolean> {
+    return this.companyRepository
+      .addItem(item)
+      .pipe(
+        tap((result) => {
+          if (result) {
+            this.items.push(item);
+            this.emitUpdateEvent();
+          }
+        }),
+      );
   }
   removeItem(item: Company) {
-    this.items = this.items.filter(w => w.id !== item.id);
-    this.emitUpdateEvent();
+    return this.companyRepository
+      .removeItem(item)
+      .pipe(
+        tap((result) => {
+          if (result) {
+            this.items = this.items.filter(w => w.id !== item.id);
+            this.emitUpdateEvent();
+          }
+        }),
+      );
   }
 }

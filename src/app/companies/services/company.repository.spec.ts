@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CompanyRepository } from './company.repository';
+import { Company } from 'src/app/models/company.model';
+import { tap, exhaustMap } from 'rxjs/operators';
 
 describe('CompanyRepository', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
@@ -14,6 +16,42 @@ describe('CompanyRepository', () => {
     service.getItems()
       .subscribe(items => {
         expect(items).toMatchSnapshot();
+        done();
+      });
+  });
+
+  it('should add new item', (done) => {
+    const service: CompanyRepository = TestBed.get(CompanyRepository);
+    service
+      .addItem({ id: 100, name: 'test'})
+      .pipe(
+        tap(result => expect(result).toBeTruthy()),
+        exhaustMap(result => {
+          expect(result).toBeTruthy();
+          return service.getItems();
+        }),
+      )
+      .subscribe(items => {
+        const item = items.find(val => val.id === 100);
+        expect(item).toBeTruthy();
+        done();
+      });
+  });
+
+  it('should add remove item', (done) => {
+    const service: CompanyRepository = TestBed.get(CompanyRepository);
+    service
+      .removeItem({ id: 1, name: 'Contoso'})
+      .pipe(
+        tap(result => expect(result).toBeTruthy()),
+        exhaustMap(result => {
+          expect(result).toBeTruthy();
+          return service.getItems();
+        }),
+      )
+      .subscribe(items => {
+        const item = items.find(val => val.id === 1);
+        expect(item).toBeFalsy();
         done();
       });
   });

@@ -1,3 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CompanyRepository should have data 1`] = `undefined`;
+exports[`CompanyRepository should have data 1`] = `
+Array [
+  Object {
+    "id": 1,
+    "name": "Contoso",
+  },
+  Object {
+    "id": 2,
+    "name": "Microsoft",
+  },
+  Object {
+    "id": 3,
+    "name": "Google",
+  },
+]
+`;

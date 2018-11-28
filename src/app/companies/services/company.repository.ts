@@ -12,28 +12,34 @@ import { Company } from 'src/app/models/company.model';
   providedIn: 'root'
 })
 export class CompanyRepository {
-
+  private items: Company[] = companiesMock;
   getItems(): Observable<Company[]> {
     return of(1)
       .pipe(
         delay(100),
         tap(() => console.log('HTTP GET /companies')),
-        mergeMap(() => of(companiesMock))
+        mergeMap(() => of(this.items))
       );
   }
-  addItem(item: Company) {
+  addItem(item: Company): Observable<boolean> {
     return of(1)
       .pipe(
         delay(100),
-        tap(() => console.log(`HTTP POST /company/${item.id}`)),
+        tap(() => {
+          this.items.push(item);
+          console.log(`HTTP POST /company/${item.id}`);
+        }),
         mergeMap(() => of(true))
       );
   }
-  removeItem(item: Company) {
+  removeItem(item: Company): Observable<boolean> {
     return of(1)
       .pipe(
         delay(100),
-        tap(() => console.log(`HTTP DELETE /company/${item.id}`)),
+        tap(() => {
+          this.items = this.items.filter(w => w.id !== item.id);
+          console.log(`HTTP DELETE /company/${item.id}`);
+      }),
         mergeMap(() => of(true))
       );
   }
