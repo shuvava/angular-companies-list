@@ -3,7 +3,7 @@
  * it immolates http work
 */
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { exhaustMap, tap } from 'rxjs/operators';
 import { Company } from 'src/app/models/company.model';
 import { CompanyRepository } from './company.repository';
@@ -20,7 +20,7 @@ export class CompanyService {
 
   getItems(): Observable<Company[]> {
     if (this.isDataLoaded) {
-        return this.data$;
+      return this.data$;
     }
 
     return this.companyRepository
@@ -35,14 +35,31 @@ export class CompanyService {
       );
   }
 
+  getItem(id: number): Observable<Company> {
+    return this
+      .getItems()
+      .pipe(
+        exhaustMap((items) => {
+          const inx = items.findIndex((w: Company) => w.id === id);
+          if (inx === -1) {
+            return of(undefined);
+          }
+          return of(items[inx]);
+        }),
+      );
+  }
+
   private emitUpdateEvent() {
     this.data.next(this.items);
   }
 
   addItem(item: Company): Observable<boolean> {
-    return this.companyRepository
-      .addItem(item)
+    return this
+      .getItems()
       .pipe(
+        exhaustMap(() => {
+          return this.companyRepository.addItem(item);
+        }),
         tap((result) => {
           if (result) {
             this.items.push(item);
@@ -50,11 +67,23 @@ export class CompanyService {
           }
         }),
       );
+    // return this.companyRepository
+    //   .addItem(item)
+    //   .pipe(
+    //     tap((result) => {
+    //       if (result) {
+    //         this.items.push(item);
+    //         this.emitUpdateEvent();
+    //       }
+    //     }),
+    //   );
   }
+
   removeItem(item: Company) {
-    return this.companyRepository
-      .removeItem(item)
+    return this
+      .getItems()
       .pipe(
+        exhaustMap(() => this.companyRepository.removeItem(item)),
         tap((result) => {
           if (result) {
             this.items = this.items.filter(w => w.id !== item.id);
@@ -62,5 +91,15 @@ export class CompanyService {
           }
         }),
       );
+    // return this.companyRepository
+    //   .removeItem(item)
+    //   .pipe(
+    //     tap((result) => {
+    //       if (result) {
+    //         this.items = this.items.filter(w => w.id !== item.id);
+    //         this.emitUpdateEvent();
+    //       }
+    //     }),
+    //   );
   }
 }

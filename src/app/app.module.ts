@@ -6,17 +6,16 @@ import { CompaniesContainerComponent } from './companies/companies.container';
 import { AppRoutingModule } from './app-routing.module';
 import { CompaniesComponent } from './companies/companies.component';
 import { CompaniesListComponent } from './companies/companies-list/companies-list.component';
+import { CompaniesModule } from './companies/companies.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CompaniesContainerComponent,
-    CompaniesComponent,
-    CompaniesListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CompaniesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
