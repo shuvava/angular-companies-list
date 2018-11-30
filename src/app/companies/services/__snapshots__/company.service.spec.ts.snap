@@ -16,3 +16,20 @@ Array [
   },
 ]
 `;
+
+exports[`CompanyService should load data before getItem 1`] = `
+Array [
+  Object {
+    "id": 1,
+    "name": "Contoso",
+  },
+  Object {
+    "id": 2,
+    "name": "Microsoft",
+  },
+  Object {
+    "id": 3,
+    "name": "Google",
+  },
+]
+`;

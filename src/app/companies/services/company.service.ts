@@ -3,7 +3,7 @@
  * it immolates http work
 */
 import { Injectable } from '@angular/core';
-import { Observable, Subject, of } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 import { exhaustMap, tap } from 'rxjs/operators';
 import { Company } from 'src/app/models/company.model';
 import { CompanyRepository } from './company.repository';
@@ -13,7 +13,7 @@ import { CompanyRepository } from './company.repository';
 })
 export class CompanyService {
   private items: Company[] = [];
-  private data: Subject<Company[]> = new Subject();
+  private data: BehaviorSubject<Company[]> = new BehaviorSubject([]);
   data$: Observable<Company[]> = this.data.asObservable();
   private isDataLoaded = false;
   constructor(private companyRepository: CompanyRepository) { }
@@ -29,7 +29,7 @@ export class CompanyService {
         exhaustMap((items) => {
           this.items = items;
           this.isDataLoaded = true;
-          setTimeout(() => this.emitUpdateEvent(), 10);
+          setTimeout(() => this.emitUpdateEvent(), 100);
           return this.data$;
         }),
       );
