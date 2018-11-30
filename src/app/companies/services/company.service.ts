@@ -29,7 +29,7 @@ export class CompanyService {
         exhaustMap((items) => {
           this.items = items;
           this.isDataLoaded = true;
-          setTimeout(() => this.emitUpdateEvent(), 100);
+          this.emitUpdateEvent();
           return this.data$;
         }),
       );
@@ -67,16 +67,6 @@ export class CompanyService {
           }
         }),
       );
-    // return this.companyRepository
-    //   .addItem(item)
-    //   .pipe(
-    //     tap((result) => {
-    //       if (result) {
-    //         this.items.push(item);
-    //         this.emitUpdateEvent();
-    //       }
-    //     }),
-    //   );
   }
 
   removeItem(item: Company) {
@@ -91,15 +81,5 @@ export class CompanyService {
           }
         }),
       );
-    // return this.companyRepository
-    //   .removeItem(item)
-    //   .pipe(
-    //     tap((result) => {
-    //       if (result) {
-    //         this.items = this.items.filter(w => w.id !== item.id);
-    //         this.emitUpdateEvent();
-    //       }
-    //     }),
-    //   );
   }
 }
