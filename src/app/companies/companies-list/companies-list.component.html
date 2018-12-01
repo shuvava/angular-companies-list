@@ -1,6 +1,6 @@
 <ul class="heroes">
   <li *ngFor="let company of companies">
-    <a>
+    <a  (click)="selectCompany(company)">
       <span class="badge">{{company.id}}</span> {{company.name}}
     </a>
   </li>

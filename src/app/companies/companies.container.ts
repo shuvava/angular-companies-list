@@ -13,5 +13,4 @@ export class CompaniesContainerComponent implements OnInit {
   constructor(private companiesService: CompanyService) { }
 
   ngOnInit() {}
-
 }

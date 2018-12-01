@@ -11,9 +11,15 @@ export class CompaniesComponent implements OnInit {
   @Input() title: string;
   @Input() companies: Company[];
 
+  currentCompany: Company = undefined;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  selectCompany(company: Company) {
+    this.currentCompany = company;
   }
 
 }

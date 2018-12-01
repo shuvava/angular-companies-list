@@ -8,9 +8,14 @@ import { Company } from 'src/app/models/company.model';
 })
 export class CompanyDetailComponent implements OnInit {
   @Input() company: Company = undefined;
+  @Input() action: String = 'Save';
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  doAction() {
   }
 
 }
