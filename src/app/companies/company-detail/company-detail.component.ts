@@ -11,6 +11,7 @@ export class CompanyDetailComponent implements OnInit, OnChanges {
 
   @Input() company: Company = undefined;
   @Input() action: String = 'Save';
+  @Input() IsNew = false;
 
 
   registerForm: FormGroup;
@@ -35,6 +36,9 @@ export class CompanyDetailComponent implements OnInit, OnChanges {
         id: this.company.id,
         name: this.company.name,
       });
+    }
+    if (!this.IsNew) {
+      this.registerForm.controls['id'].disable();
     }
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ControlContainer, FormGroup } from '@angular/forms';
+import { ControlContainer, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form-input',
@@ -14,15 +14,18 @@ export class FormInputComponent implements OnInit {
   @Input() formCtrlName: string;
 
   inputFormGroup: FormGroup;
+  inputFormControl: FormControl;
 
   constructor(private controlContainer: ControlContainer) { }
 
   ngOnInit() {
-    this.inputFormGroup = <FormGroup>this.controlContainer.control;
+      this.inputFormGroup = <FormGroup>this.controlContainer.control;
+      this.inputFormControl = <FormControl>this.inputFormGroup.controls[this.formCtrlName];
   }
 
-  isNotValid() {
-    return false;
+  isValid() {
+    // return this.inputFormGroup.valid;
+    return !(this.inputFormControl.errors !== null && (this.inputFormControl.dirty || this.inputFormControl.touched));
   }
 
 }

@@ -1,5 +1,6 @@
 <div class="form-group" [formGroup]="inputFormGroup">
-  <label for="alterEgo">{{title}}</label>
-  <input type={{type}} formControlName={{formCtrlName}} class="form-control">
-  <div [hidden]="isNotValid()" class="alert alert-danger">{{errorMessage}}</div>
+  <label for="alterEgo">{{title}}
+    <input type={{type}} formControlName={{formCtrlName}} class="form-control">
+  </label>
+  <div [hidden]="isValid()" class="alert alert-danger">{{errorMessage}}</div>
 </div>
