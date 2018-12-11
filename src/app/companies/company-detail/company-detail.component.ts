@@ -37,7 +37,7 @@ export class CompanyDetailComponent implements OnInit, OnChanges {
         name: this.company.name,
       });
     }
-    if (!this.IsNew) {
+    if (!this.IsNew && this.registerForm) {
       this.registerForm.controls['id'].disable();
     }
   }
