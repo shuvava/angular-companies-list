@@ -21,4 +21,8 @@ export class FormInputComponent implements OnInit {
     this.inputFormGroup = <FormGroup>this.controlContainer.control;
   }
 
+  isNotValid() {
+    return false;
+  }
+
 }

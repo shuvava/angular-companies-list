@@ -1,6 +1,8 @@
 <div *ngIf="company">
-  <h2>{{company.name | uppercase}} Details</h2>
-  <app-form-input type="text" formCtrlName="id"></app-form-input>
-  <app-form-input type="text" formCtrlName="name"></app-form-input>
-  <button (click)="doAction()">{{action}}</button>
+  <form [formGroup]="registerForm" (ngSubmit)="doAction()">
+    <h2>{{company.name | uppercase}} Details</h2>
+    <app-form-input type="text" formCtrlName="id"></app-form-input>
+    <app-form-input type="text" formCtrlName="name"></app-form-input>
+    <button type="submit">{{action}}</button>
+  </form>
 </div>
