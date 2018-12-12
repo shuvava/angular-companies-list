@@ -2,13 +2,17 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CompanyService } from './services/company.service';
 import { Observable } from 'rxjs';
 import { Company } from '../models/company.model';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.container.html'
 })
 export class CompaniesContainerComponent implements OnInit {
-  companies$: Observable<Company[]> = this.companiesService.getItems();
+  companies$: Observable<Company[]> = this.companiesService.getItems()
+  .pipe(
+    tap(items => console.log(`received updated items: ${JSON.stringify(items)}`))
+  );
 
   constructor(private companiesService: CompanyService, private cd: ChangeDetectorRef) { }
 

@@ -51,7 +51,7 @@ export class CompanyService {
   }
 
   private emitUpdateEvent() {
-    console.log(`updated items: ${JSON.stringify(this.items)}`);
+    console.log(`dispatch updated items: ${JSON.stringify(this.items)}`);
     this.data.next(this.items);
   }
 
