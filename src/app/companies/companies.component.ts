@@ -24,6 +24,10 @@ export class CompaniesComponent implements OnInit {
     this.currentCompany = company;
   }
 
+  onAddNew() {
+
+  }
+
   updateCompany(company: Company) {
     this.update.emit(company);
   }
