@@ -16,3 +16,5 @@ Array [
   },
 ]
 `;
+
+exports[`CompanyRepository should update item 1`] = `"Contoso1"`;

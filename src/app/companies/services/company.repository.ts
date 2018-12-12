@@ -43,4 +43,16 @@ export class CompanyRepository {
         mergeMap(() => of(true))
       );
   }
+  updateItem(item: Company): Observable<boolean> {
+    return of(1)
+      .pipe(
+        delay(100),
+        tap(() => {
+          const toUpdate = this.items.find(w => w.id === item.id);
+          Object.assign(toUpdate, item);
+          console.log(`HTTP PUT /company/${item.id}`);
+      }),
+        mergeMap(() => of(true))
+      );
+  }
 }

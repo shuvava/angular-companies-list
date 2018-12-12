@@ -82,4 +82,19 @@ export class CompanyService {
         }),
       );
   }
+
+  updateItem(item: Company) {
+    return this
+      .getItems()
+      .pipe(
+        exhaustMap(() => this.companyRepository.updateItem(item)),
+        tap((result) => {
+          if (result) {
+            const toUpdate = this.items.find(w => w.id === item.id);
+            Object.assign(toUpdate, item);
+            this.emitUpdateEvent();
+          }
+        }),
+      );
+  }
 }

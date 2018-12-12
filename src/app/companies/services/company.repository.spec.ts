@@ -37,7 +37,7 @@ describe('CompanyRepository', () => {
       });
   });
 
-  it('should add remove item', (done) => {
+  it('should remove item', (done) => {
     const service: CompanyRepository = TestBed.get(CompanyRepository);
     service
       .removeItem({ id: 1, name: 'Contoso'})
@@ -51,6 +51,24 @@ describe('CompanyRepository', () => {
       .subscribe(items => {
         const item = items.find(val => val.id === 1);
         expect(item).toBeFalsy();
+        done();
+      });
+  });
+
+  it('should update item', (done) => {
+    const service: CompanyRepository = TestBed.get(CompanyRepository);
+    service
+      .updateItem({ id: 1, name: 'Contoso1'})
+      .pipe(
+        tap(result => expect(result).toBeTruthy()),
+        exhaustMap(result => {
+          expect(result).toBeTruthy();
+          return service.getItems();
+        }),
+      )
+      .subscribe(items => {
+        const item = items.find(val => val.id === 1);
+        expect(item.name).toMatchSnapshot();
         done();
       });
   });

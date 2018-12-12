@@ -33,3 +33,5 @@ Array [
   },
 ]
 `;
+
+exports[`CompanyService should update item 1`] = `"Contoso1"`;

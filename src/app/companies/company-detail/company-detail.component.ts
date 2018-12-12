@@ -1,13 +1,14 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Company } from 'src/app/models/company.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-company-detail',
   templateUrl: './company-detail.component.html',
   styleUrls: ['./company-detail.component.css']
 })
-export class CompanyDetailComponent implements OnInit, OnChanges {
+export class CompanyDetailComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() company: Company = undefined;
   @Input() submitTitle: String = 'Save';
@@ -16,6 +17,7 @@ export class CompanyDetailComponent implements OnInit, OnChanges {
   @Output() action = new EventEmitter();
 
   registerForm: FormGroup;
+  subscription: Subscription;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -25,6 +27,13 @@ export class CompanyDetailComponent implements OnInit, OnChanges {
       name: [null, [Validators.required]],
     });
     this.initForm();
+    this.subscription = this.registerForm
+      .valueChanges
+      .subscribe(form => console.log(`new from state: ${JSON.stringify(form)}`));
+
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   ngOnChanges(changes: SimpleChanges) {

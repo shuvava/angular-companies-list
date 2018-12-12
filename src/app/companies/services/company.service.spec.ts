@@ -66,7 +66,7 @@ describe('CompanyService', () => {
       });
   });
 
-  it('should add remove item', (done) => {
+  it('should remove item', (done) => {
     const service: CompanyService = TestBed.get(CompanyService);
     const repo: CompanyRepository = TestBed.get(CompanyRepository);
     const spy = jest.spyOn(repo, 'getItems');
@@ -82,6 +82,26 @@ describe('CompanyService', () => {
       .subscribe(items => {
         const item = items.find(val => val.id === 1);
         expect(item).toBeFalsy();
+        done();
+      });
+  });
+
+  it('should update item', (done) => {
+    const service: CompanyService = TestBed.get(CompanyService);
+    const repo: CompanyRepository = TestBed.get(CompanyRepository);
+    const spy = jest.spyOn(repo, 'getItems');
+    service
+      .updateItem({ id: 1, name: 'Contoso1'})
+      .pipe(
+        exhaustMap(result => {
+          expect(result).toBeTruthy();
+          expect(spy).toHaveBeenCalled();
+          return service.getItems();
+        }),
+      )
+      .subscribe(items => {
+        const item = items.find(val => val.id === 1);
+        expect(item.name).toMatchSnapshot();
         done();
       });
   });
