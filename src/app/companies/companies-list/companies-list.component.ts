@@ -6,7 +6,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
   selector: 'app-companies-list',
   templateUrl: './companies-list.component.html',
   styleUrls: ['./companies-list.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompaniesListComponent implements OnInit {
   selectedCompany$: Company = undefined;

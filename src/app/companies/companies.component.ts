@@ -5,7 +5,7 @@ import { Company } from '../models/company.model';
   selector: 'app-companies-ui',
   templateUrl: './companies.component.html',
   styleUrls: ['./companies.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompaniesComponent implements OnInit {
   @Input() title: string;

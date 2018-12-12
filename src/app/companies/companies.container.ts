@@ -4,6 +4,11 @@ import { Observable } from 'rxjs';
 import { Company } from '../models/company.model';
 import { tap } from 'rxjs/operators';
 
+/**
+ * asybc pipes with ngIf
+ * //https://toddmotto.com/angular-ngif-async-pipe
+ */
+
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.container.html'
@@ -21,7 +26,7 @@ export class CompaniesContainerComponent implements OnInit {
   updateCompany(company: Company) {
     console.log(`updated company: ${JSON.stringify(company)}`);
     this.companiesService.updateItem(company).subscribe((result) => {
-      this.cd.markForCheck();
+      // this.cd.markForCheck();
       console.log(`update was successful:${result}`);
     });
   }
