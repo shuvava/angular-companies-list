@@ -4,7 +4,7 @@
 */
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
-import { exhaustMap, tap } from 'rxjs/operators';
+import { exhaustMap, tap, first } from 'rxjs/operators';
 import { Company } from 'src/app/models/company.model';
 import { CompanyRepository } from './company.repository';
 
@@ -39,6 +39,7 @@ export class CompanyService {
     return this
       .getItems()
       .pipe(
+        first(),
         exhaustMap((items) => {
           const inx = items.findIndex((w: Company) => w.id === id);
           if (inx === -1) {
@@ -57,6 +58,7 @@ export class CompanyService {
     return this
       .getItems()
       .pipe(
+        first(),
         exhaustMap(() => {
           return this.companyRepository.addItem(item);
         }),
@@ -73,6 +75,7 @@ export class CompanyService {
     return this
       .getItems()
       .pipe(
+        first(),
         exhaustMap(() => this.companyRepository.removeItem(item)),
         tap((result) => {
           if (result) {
@@ -87,6 +90,7 @@ export class CompanyService {
     return this
       .getItems()
       .pipe(
+        first(),
         exhaustMap(() => this.companyRepository.updateItem(item)),
         tap((result) => {
           if (result) {
