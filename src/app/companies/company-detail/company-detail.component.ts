@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { Company } from 'src/app/models/company.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -10,9 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CompanyDetailComponent implements OnInit, OnChanges {
 
   @Input() company: Company = undefined;
-  @Input() action: String = 'Save';
+  @Input() submitTitle: String = 'Save';
   @Input() IsNew = false;
 
+  @Output() action = new EventEmitter();
 
   registerForm: FormGroup;
 
@@ -43,6 +44,9 @@ export class CompanyDetailComponent implements OnInit, OnChanges {
   }
 
   doAction() {
+    if (this.company !== undefined && this.registerForm.valid) {
+      this.action.emit(this.registerForm.getRawValue());
+    }
   }
 
 }

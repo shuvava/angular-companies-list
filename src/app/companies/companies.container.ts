@@ -13,4 +13,9 @@ export class CompaniesContainerComponent implements OnInit {
   constructor(private companiesService: CompanyService) { }
 
   ngOnInit() {}
+
+  updateCompany(company: Company) {
+    console.log(`updated company: ${JSON.stringify(company)}`);
+    // this.companiesService.
+  }
 }

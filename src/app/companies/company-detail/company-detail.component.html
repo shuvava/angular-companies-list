@@ -3,6 +3,13 @@
     <h2>{{company.name | uppercase}} Details</h2>
     <app-form-input type="text" formCtrlName="id" title="id"></app-form-input>
     <app-form-input type="text" formCtrlName="name" title="name"></app-form-input>
-    <button type="submit">{{action}}</button>
+    <button type="submit" [disabled]="!registerForm.valid">{{submitTitle}}</button>
   </form>
+  <hr>
+  <p>
+    Form Value: {{ registerForm.value | json }}
+  </p>
+  <p>
+    Form Status: {{ registerForm.status }}
+  </p>
 </div>
