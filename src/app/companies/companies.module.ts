@@ -7,6 +7,7 @@ import { CompaniesComponent } from './companies.component';
 import { CompaniesListComponent } from './companies-list/companies-list.component';
 import { CompanyDetailComponent } from './company-detail/company-detail.component';
 import { CompanyFormsModule } from '../forms/forms.module';
+import { CompanyDetailDialogComponent } from './company-detail-dialog/company-detail-dialog.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { CompanyFormsModule } from '../forms/forms.module';
     CompaniesComponent,
     CompaniesListComponent,
     CompanyDetailComponent,
+    CompanyDetailDialogComponent,
   ],
   exports: [
     CompaniesContainerComponent
