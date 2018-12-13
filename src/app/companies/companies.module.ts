@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import {MatButtonModule} from '@angular/material';
+import {MatButtonModule, MatDialogModule, MatFormFieldModule} from '@angular/material';
 import { CompaniesContainerComponent } from './companies.container';
 import { CompaniesComponent } from './companies.component';
 import { CompaniesListComponent } from './companies-list/companies-list.component';
@@ -26,6 +26,11 @@ import { CompanyDetailDialogComponent } from './company-detail-dialog/company-de
     ReactiveFormsModule,
     CompanyFormsModule,
     MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+  ],
+  entryComponents: [
+    CompanyDetailDialogComponent
   ]
 })
 export class CompaniesModule { }

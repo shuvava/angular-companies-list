@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { Company } from '../models/company.model';
+import { MatDialog } from '@angular/material';
+import { CompanyDetailDialogComponent } from './company-detail-dialog/company-detail-dialog.component';
 
 @Component({
   selector: 'app-companies-ui',
@@ -15,7 +17,7 @@ export class CompaniesComponent implements OnInit {
 
   currentCompany: Company = undefined;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -25,7 +27,13 @@ export class CompaniesComponent implements OnInit {
   }
 
   onAddNew() {
-
+    const dialogRef = this.dialog.open(CompanyDetailDialogComponent, {
+      width: '250px',
+      data: new Company(),
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`The dialog was closed with result: ${JSON.stringify(result)}`);
+    });
   }
 
   updateCompany(company: Company) {
