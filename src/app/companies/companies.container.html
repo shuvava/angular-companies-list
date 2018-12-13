@@ -1,5 +1,6 @@
 <app-companies-ui
   [companies]="companies$ | async"
   title="List of exist companies"
-  (update)="updateCompany($event)">
+  (update)="updateCompany($event)"
+  (add)="addCompany($event)">
 </app-companies-ui>

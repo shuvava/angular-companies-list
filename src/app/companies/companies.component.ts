@@ -14,6 +14,7 @@ export class CompaniesComponent implements OnInit {
   @Input() companies: Company[];
 
   @Output() update = new EventEmitter();
+  @Output() add = new EventEmitter();
 
   currentCompany: Company = undefined;
 
@@ -33,6 +34,7 @@ export class CompaniesComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`The dialog was closed with result: ${JSON.stringify(result)}`);
+      this.add.emit(result);
     });
   }
 

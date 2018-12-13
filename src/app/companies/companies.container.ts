@@ -23,11 +23,17 @@ export class CompaniesContainerComponent implements OnInit {
 
   ngOnInit() {}
 
-  updateCompany(company: Company) {
+  updateCompany(company: Company): void {
     console.log(`updated company: ${JSON.stringify(company)}`);
     this.companiesService.updateItem(company).subscribe((result) => {
       // this.cd.markForCheck();
       console.log(`update was successful:${result}`);
+    });
+  }
+  addCompany(company: Company): void {
+    console.log(`added company: ${JSON.stringify(company)}`);
+    this.companiesService.addItem(company).subscribe((result) => {
+      console.log(`add was successful:${result}`);
     });
   }
 }

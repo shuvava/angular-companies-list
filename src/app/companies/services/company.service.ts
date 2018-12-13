@@ -27,7 +27,7 @@ export class CompanyService {
       .getItems()
       .pipe(
         exhaustMap((items) => {
-          this.items = items;
+          this.items = [...items];
           this.isDataLoaded = true;
           this.emitUpdateEvent();
           return this.data$;
