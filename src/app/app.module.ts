@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CompaniesModule } from './companies/companies.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompanyFormsModule } from './forms/forms.module';
+import { RootStoreModule } from './root-store/root-store.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CompanyFormsModule } from './forms/forms.module';
     // CompanyFormsModule,
     CompaniesModule,
     BrowserAnimationsModule,
+    RootStoreModule,
     // FormsModule,
     // ReactiveFormsModule,
   ],
