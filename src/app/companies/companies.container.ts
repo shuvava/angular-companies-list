@@ -3,6 +3,8 @@ import { CompanyService } from './services/company.service';
 import { Observable } from 'rxjs';
 import { Company } from '../models/company.model';
 import { tap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { CompanyState, CompanyActions } from '../root-store/company';
 
 /**
  * asybc pipes with ngIf
@@ -14,14 +16,20 @@ import { tap } from 'rxjs/operators';
   templateUrl: './companies.container.html'
 })
 export class CompaniesContainerComponent implements OnInit {
-  companies$: Observable<Company[]> = this.companiesService.getItems()
+  // companies$: Observable<Company[]> = this.companiesService.getItems()
+  companies$: Observable<Company[]> = this.store.select(state => state.companies)
   .pipe(
     tap(items => console.log(`received updated items: ${JSON.stringify(items)}`))
   );
 
-  constructor(private companiesService: CompanyService, private cd: ChangeDetectorRef) { }
+  constructor(
+    private store: Store<CompanyState>,
+    private companiesService: CompanyService,
+    private cd: ChangeDetectorRef) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(new CompanyActions.LoadCompaniesAction())
+  }
 
   updateCompany(company: Company): void {
     console.log(`updated company: ${JSON.stringify(company)}`);
