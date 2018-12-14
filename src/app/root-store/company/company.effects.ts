@@ -5,6 +5,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { CompanyState } from '.';
 import { Store } from '@ngrx/store';
 import { tap, switchMap, map } from 'rxjs/operators';
+import { Company } from 'src/app/models/company.model';
 
 @Injectable()
 export class CompanyEffects {
@@ -34,9 +35,9 @@ export class CompanyEffects {
       ofType<UpdateCompany>(CompanyActionTypes.UPDATE_COMPANY),
       tap(() => console.log('updating company')),
       switchMap((state) => this.companiesService
-      .updateItem(state.payload.company.changes)
+      .updateItem(<Company>state.payload.company.changes)
       .pipe(
-        map(items => new LoadCompaniesSuccess({companies: items})),
+        tap(result => console.log(`update was successful:${result}`)),
       )
     ),
     );
