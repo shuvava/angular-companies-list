@@ -1,6 +1,10 @@
-// https://github.com/ngrx/platform/tree/master/projects/example-app
 import { adapter, CompanyState } from './company.state';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+
+/**
+ * https://github.com/ngrx/platform/tree/master/projects/example-app
+ * https://itnext.io/ngrx-best-practices-for-enterprise-angular-applications-6f00bcdf36d7
+ */
 
 const {
   selectIds,

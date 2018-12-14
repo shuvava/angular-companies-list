@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CompanyService } from 'src/app/companies/services/company.service';
-import { LoadCompanies, CompanyActionTypes } from './company.actions';
+import { LoadCompanies, CompanyActionTypes, LoadCompaniesSuccess } from './company.actions';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { CompanyState } from '.';
 import { Store } from '@ngrx/store';
-import { tap, switchMap } from 'rxjs/operators';
+import { tap, switchMap, map } from 'rxjs/operators';
 
 @Injectable()
 export class CompanyEffects {
@@ -20,6 +20,11 @@ export class CompanyEffects {
     .pipe(
       ofType<LoadCompanies>(CompanyActionTypes.LOAD_COMPANIES),
       tap(() => console.log('loading companies')),
-      switchMap(() => this.companiesService.getItems())
+      switchMap(() => this.companiesService
+        .getItems()
+        .pipe(
+          map(items => new LoadCompaniesSuccess({companies: items})),
+        )
+      ),
     );
 }

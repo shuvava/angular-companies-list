@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Company } from '../models/company.model';
 import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { CompanyState, CompanyActions } from '../root-store/company';
+import { CompanyState, CompanyActions, CompanySelectors } from '../root-store/company';
 
 /**
  * asybc pipes with ngIf
@@ -17,7 +17,7 @@ import { CompanyState, CompanyActions } from '../root-store/company';
 })
 export class CompaniesContainerComponent implements OnInit {
   // companies$: Observable<Company[]> = this.companiesService.getItems()
-  companies$: Observable<Company[]> = this.store.select(state => state.companies)
+  companies$: Observable<Company[]> = this.store.select(CompanySelectors.selectAllCompanies)
   .pipe(
     tap(items => console.log(`received updated items: ${JSON.stringify(items)}`))
   );

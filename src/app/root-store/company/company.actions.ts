@@ -4,7 +4,8 @@ import { Company } from '../../models/company.model';
 import { Update } from '@ngrx/entity';
 
 export enum CompanyActionTypes {
-  LOAD_COMPANIES = '[Company] Load',
+  LOAD_COMPANIES = '[Company] Loading',
+  LOAD_COMPANIES_SUCCESS = '[Company] Loaded',
   ADD_COMPANY = '[Company] Add User',
   ADD_COMPANIES = '[Company] Add Users',
   UPDATE_COMPANY = '[Company] Update User',
@@ -19,6 +20,11 @@ export enum CompanyActionTypes {
 export class LoadCompanies implements Action {
   readonly type = CompanyActionTypes.LOAD_COMPANIES;
   constructor() {}
+}
+
+export class LoadCompaniesSuccess implements Action {
+  readonly type = CompanyActionTypes.LOAD_COMPANIES_SUCCESS;
+  constructor(public payload: {companies: Company[]}) {}
 }
 
 export class AddCompany implements Action {
@@ -70,6 +76,7 @@ export class ClearCompanies implements Action {
 
 export type CompanyActions
   = LoadCompanies
+  | LoadCompaniesSuccess
   | AddCompany
   | AddCompanies
   | UpdateCompany

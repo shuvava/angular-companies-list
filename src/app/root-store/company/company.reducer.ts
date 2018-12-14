@@ -35,7 +35,7 @@ export function companyReducer(state = initialState, action: CompanyActions) {
       return adapter.removeMany(action.payload.ids, state);
     }
 
-    case CompanyActionTypes.LOAD_COMPANIES: {
+    case CompanyActionTypes.LOAD_COMPANIES_SUCCESS: {
       return adapter.addAll(action.payload.companies, state);
     }
     case CompanyActionTypes.CLEAR_COMPANIES: {
