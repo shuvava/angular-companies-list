@@ -28,7 +28,7 @@ export class CompaniesContainerComponent implements OnInit {
     private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.store.dispatch(new CompanyActions.LoadCompaniesAction())
+    this.store.dispatch(new CompanyActions.LoadCompanies());
   }
 
   updateCompany(company: Company): void {

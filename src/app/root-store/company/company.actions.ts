@@ -18,7 +18,7 @@ export enum CompanyActionTypes {
 
 export class LoadCompanies implements Action {
   readonly type = CompanyActionTypes.LOAD_COMPANIES;
-  constructor(public payload: {companies: Company[]}) {}
+  constructor() {}
 }
 
 export class AddCompany implements Action {
