@@ -5,6 +5,7 @@ import { Company } from '../models/company.model';
 import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { CompanyState, CompanyActions, CompanySelectors } from '../root-store/company';
+import { Update } from '@ngrx/entity';
 
 /**
  * asybc pipes with ngIf
@@ -18,9 +19,9 @@ import { CompanyState, CompanyActions, CompanySelectors } from '../root-store/co
 export class CompaniesContainerComponent implements OnInit {
   // companies$: Observable<Company[]> = this.companiesService.getItems()
   companies$: Observable<Company[]> = this.store.select(CompanySelectors.selectAllCompanies)
-  .pipe(
-    tap(items => console.log(`received updated items: ${JSON.stringify(items)}`))
-  );
+    .pipe(
+      tap(items => console.log(`received updated items: ${JSON.stringify(items)}`))
+    );
 
   constructor(
     private store: Store<CompanyState>,
@@ -33,15 +34,21 @@ export class CompaniesContainerComponent implements OnInit {
 
   updateCompany(company: Company): void {
     console.log(`updated company: ${JSON.stringify(company)}`);
-    this.companiesService.updateItem(company).subscribe((result) => {
-      // this.cd.markForCheck();
-      console.log(`update was successful:${result}`);
-    });
-  }
-  addCompany(company: Company): void {
-    console.log(`added company: ${JSON.stringify(company)}`);
-    this.companiesService.addItem(company).subscribe((result) => {
-      console.log(`add was successful:${result}`);
-    });
-  }
+    this.store.dispatch(new CompanyActions.UpdateCompany({
+      company: {
+        id: company.id,
+        changes: company
+      }
+    }));
+    // this.companiesService.updateItem(company).subscribe((result) => {
+  //   // this.cd.markForCheck();
+  //   console.log(`update was successful:${result}`);
+  // });
+}
+addCompany(company: Company): void {
+  console.log(`added company: ${JSON.stringify(company)}`);
+  this.companiesService.addItem(company).subscribe((result) => {
+    console.log(`add was successful:${result}`);
+  });
+}
 }

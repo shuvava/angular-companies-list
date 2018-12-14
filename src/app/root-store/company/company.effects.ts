@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CompanyService } from 'src/app/companies/services/company.service';
-import { LoadCompanies, CompanyActionTypes, LoadCompaniesSuccess } from './company.actions';
+import { LoadCompanies, CompanyActionTypes, LoadCompaniesSuccess, UpdateCompany } from './company.actions';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { CompanyState } from '.';
 import { Store } from '@ngrx/store';
@@ -26,5 +26,18 @@ export class CompanyEffects {
           map(items => new LoadCompaniesSuccess({companies: items})),
         )
       ),
+    );
+
+  @Effect()
+  updateCompany$ = this.actions$
+    .pipe(
+      ofType<UpdateCompany>(CompanyActionTypes.UPDATE_COMPANY),
+      tap(() => console.log('updating company')),
+      switchMap((state) => this.companiesService
+      .updateItem(state.payload.company.changes)
+      .pipe(
+        map(items => new LoadCompaniesSuccess({companies: items})),
+      )
+    ),
     );
 }
