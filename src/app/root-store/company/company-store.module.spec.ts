@@ -1,4 +1,4 @@
-import { CompanyStoreModule } from './store.module';
+import { CompanyStoreModule } from './company-store.module';
 
 describe('StoreModule', () => {
   let storeModule: CompanyStoreModule;

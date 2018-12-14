@@ -1,6 +1,6 @@
-import * as CompanyActions from './actions';
-import { CompanyStoreModule } from './store.module';
-import { CompanyState } from './state';
+import * as CompanyActions from './company.actions';
+import { CompanyStoreModule } from './company-store.module';
+import { CompanyState } from './company.state';
 
 export {
   CompanyStoreModule,
