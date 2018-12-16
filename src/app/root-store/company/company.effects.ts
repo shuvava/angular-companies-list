@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CompanyService } from 'src/app/companies/services/company.service';
-import { LoadCompanies, CompanyActionTypes, LoadCompaniesSuccess, UpdateCompany } from './company.actions';
+import { LoadCompanies, CompanyActionTypes, LoadCompaniesSuccess, UpdateCompany, UpdateCompanySuccess, AddCompanySuccess } from './company.actions';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { CompanyState } from '.';
 import { Store } from '@ngrx/store';
@@ -24,7 +24,7 @@ export class CompanyEffects {
       switchMap(() => this.companiesService
         .getItems()
         .pipe(
-          map(items => new LoadCompaniesSuccess({companies: items})),
+          map(items => new LoadCompaniesSuccess({ companies: items })),
         )
       ),
     );
@@ -33,12 +33,34 @@ export class CompanyEffects {
   updateCompany$ = this.actions$
     .pipe(
       ofType<UpdateCompany>(CompanyActionTypes.UPDATE_COMPANY),
-      tap(() => console.log('updating company')),
+      tap(() => console.log('Effect updating company')),
       switchMap((state) => this.companiesService
-      .updateItem(<Company>state.payload.company.changes)
-      .pipe(
-        tap(result => console.log(`update was successful:${result}`)),
-      )
-    ),
+        .updateItem(state.payload.company)
+        .pipe(
+          tap(result => console.log(`Effect update was successful:${result}`)),
+          map(() => new UpdateCompanySuccess({
+            company: {
+              id: state.payload.company.id,
+              changes: state.payload.company
+            }
+          }))
+        )
+      ),
+    );
+
+  @Effect()
+  addCompany$ = this.actions$
+    .pipe(
+      ofType<UpdateCompany>(CompanyActionTypes.ADD_COMPANY),
+      tap(() => console.log('Effect adding company')),
+      switchMap((state) => this.companiesService
+        .addItem(state.payload.company)
+        .pipe(
+          tap(result => console.log(`Effect add was successful:${result}`)),
+          map(() => new AddCompanySuccess({
+            company:  state.payload.company
+          }))
+        )
+      ),
     );
 }

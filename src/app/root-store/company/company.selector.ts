@@ -31,5 +31,10 @@ export const selectCurrentCompanyId = createSelector(
 export const selectCurrentCompany = createSelector(
   selectCompaniesFeatureState,
   selectCurrentCompanyId,
-  (userEntities, companyId) => userEntities[companyId]
+  (userEntities, companyId) => {
+    if (companyId) {
+      return userEntities.entities[companyId];
+    }
+    return null;
+  }
 );

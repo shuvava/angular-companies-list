@@ -7,12 +7,10 @@ export const adapter: EntityAdapter<Company> = createEntityAdapter<Company>({
 
 export const initialState: CompanyState = adapter.getInitialState({
   isLoaded: false,
-  companies: [],
   selectedCompanyId: null,
 });
 
 export interface CompanyState extends EntityState<Company> {
   isLoaded: boolean;
-  companies: Company[];
   selectedCompanyId: null | number;
 }

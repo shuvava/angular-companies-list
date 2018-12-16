@@ -12,11 +12,11 @@ import { CompanyDetailDialogComponent } from './company-detail-dialog/company-de
 export class CompaniesComponent implements OnInit {
   @Input() title: string;
   @Input() companies: Company[];
+  @Input() currentCompany: Company = undefined;
 
   @Output() update = new EventEmitter();
   @Output() add = new EventEmitter();
-
-  currentCompany: Company = undefined;
+  @Output() select = new EventEmitter();
 
   constructor(public dialog: MatDialog) { }
 
@@ -24,7 +24,12 @@ export class CompaniesComponent implements OnInit {
   }
 
   selectCompany(company: Company) {
-    this.currentCompany = company;
+    // this.currentCompany = company;
+    if (company) {
+      this.select.emit(company.id);
+    } else {
+      this.select.emit(null);
+    }
   }
 
   onAddNew() {

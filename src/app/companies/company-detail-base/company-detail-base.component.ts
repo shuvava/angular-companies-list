@@ -32,7 +32,7 @@ export class CompanyDetailBaseComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   initForm() {
-    if (this.company !== undefined) {
+    if (this.company) {
       this.registerForm.patchValue({
         id: this.company.id,
         name: this.company.name,
@@ -45,7 +45,9 @@ export class CompanyDetailBaseComponent implements OnInit, OnChanges, OnDestroy 
 
   value(): Company {
     if (this.company !== undefined && this.registerForm.valid) {
-      return this.registerForm.getRawValue();
+      const result = <Company>this.registerForm.getRawValue();
+      result.id = parseInt(result.id.toString(), 10);
+      return result;
     }
     return undefined;
   }
