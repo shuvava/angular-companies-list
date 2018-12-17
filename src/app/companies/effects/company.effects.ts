@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 import { CompanyService } from 'src/app/companies/services/company.service';
-import { LoadCompanies, CompanyActionTypes, LoadCompaniesSuccess, UpdateCompany, UpdateCompanySuccess, AddCompanySuccess } from './company.actions';
+import {
+  LoadCompanies,
+  CompanyActionTypes,
+  LoadCompaniesSuccess,
+  UpdateCompany,
+  UpdateCompanySuccess,
+  AddCompanySuccess,
+} from '../actions/company.actions';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { CompanyState } from '.';
+import { CompanyState } from '../../root-store/company';
 import { Store } from '@ngrx/store';
 import { tap, switchMap, map } from 'rxjs/operators';
-import { Company } from 'src/app/models/company.model';
 
 @Injectable()
 export class CompanyEffects {

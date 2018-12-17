@@ -1,5 +1,5 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Company } from 'src/app/models/company.model';
+import { Company } from '../models';
 
 export const adapter: EntityAdapter<Company> = createEntityAdapter<Company>({
   selectId: model => model.id,

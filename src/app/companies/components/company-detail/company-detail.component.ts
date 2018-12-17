@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Company } from 'src/app/models/company.model';
+import { Company } from '../../models';
 import { FormBuilder } from '@angular/forms';
 import { CompanyDetailBaseComponent } from '../company-detail-base/company-detail-base.component';
 

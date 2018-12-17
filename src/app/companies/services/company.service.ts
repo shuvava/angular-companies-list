@@ -5,7 +5,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { exhaustMap, tap, first } from 'rxjs/operators';
-import { Company } from 'src/app/models/company.model';
+import { Company } from '../models';
 import { CompanyRepository } from './company.repository';
 
 @Injectable({

@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { CompanyService } from './services/company.service';
+import { CompanyService } from '../services/company.service';
 import { Observable } from 'rxjs';
-import { Company } from '../models/company.model';
+import { Company } from '../models';
 import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { CompanyState, CompanyActions, CompanySelectors } from '../root-store/company';
+import { CompanyState, CompanyActions, CompanySelectors } from '../../root-store/company';
 
 /**
  * asybc pipes with ngIf

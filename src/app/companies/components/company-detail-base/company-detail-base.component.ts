@@ -1,7 +1,7 @@
 import { OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { Company } from 'src/app/models/company.model';
+import { Company } from '../../models';
 
 export class CompanyDetailBaseComponent implements OnInit, OnChanges, OnDestroy {
 

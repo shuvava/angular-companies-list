@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { Company } from 'src/app/models/company.model';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Company } from '../../models';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-companies-list',

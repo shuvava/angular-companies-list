@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CompaniesContainerComponent } from './companies/companies.container';
+import { CompaniesContainerComponent } from './companies/containers/companies.container';
 
 const routes: Routes = [
   { path: '', redirectTo: '/companies', pathMatch: 'full' },

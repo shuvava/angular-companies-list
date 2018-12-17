@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay, mergeMap, tap } from 'rxjs/operators';
 import { companiesMock } from './company.mockData';
-import { Company } from 'src/app/models/company.model';
+import { Company } from '../models';
 
 @Injectable({
   providedIn: 'root'

@@ -1,4 +1,4 @@
-import { CompanyActionTypes, CompanyActions } from 'src/app/root-store/company/company.actions';
+import { CompanyActionTypes, CompanyActions } from 'src/app/companies/actions/company.actions';
 import { initialState, adapter } from './company.state';
 
 export function companyReducer(state = initialState, action: CompanyActions) {

@@ -7,17 +7,16 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { CompanyStoreModule } from './company/company-store.module';
-
 @NgModule({
   imports: [
     CommonModule,
 
-    CompanyStoreModule,
-
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreDevtoolsModule.instrument({
+      name: 'Companies list App',
+      logOnly: environment.production,
+    }),
   ],
   declarations: []
 })
