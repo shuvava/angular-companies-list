@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Company } from '../../models';
 import { FormBuilder } from '@angular/forms';
 import { CompanyDetailBaseComponent } from '../company-detail-base/company-detail-base.component';
@@ -6,7 +6,8 @@ import { CompanyDetailBaseComponent } from '../company-detail-base/company-detai
 @Component({
   selector: 'app-company-detail',
   templateUrl: './company-detail.component.html',
-  styleUrls: ['./company-detail.component.css']
+  styleUrls: ['./company-detail.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CompanyDetailComponent extends CompanyDetailBaseComponent {
 
@@ -16,9 +17,6 @@ export class CompanyDetailComponent extends CompanyDetailBaseComponent {
 
   @Output() action = new EventEmitter();
 
-  /**
-   *
-   */
   constructor(protected formBuilder: FormBuilder) {
     super(formBuilder);
   }
