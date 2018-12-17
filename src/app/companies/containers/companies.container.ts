@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { Company } from '../models';
 import { tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { CompanyState, CompanyActions, CompanySelectors } from '../../root-store/company';
+import { CompanySelectors, CompanyState } from '../reducers';
+import { CompanyActions } from '../actions';
 
 /**
  * asybc pipes with ngIf

@@ -9,9 +9,9 @@ import {
   AddCompanySuccess,
 } from '../actions/company.actions';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { CompanyState } from '../../root-store/company';
 import { Store } from '@ngrx/store';
 import { tap, switchMap, map } from 'rxjs/operators';
+import { CompanyState } from '../reducers';
 
 @Injectable()
 export class CompanyEffects {
