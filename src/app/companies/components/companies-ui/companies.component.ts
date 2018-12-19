@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { CompanyDetailDialogComponent } from '../company-detail-dialog/company-detail-dialog.component';
-import { Company } from '../../models/company.model';
+import { Company } from '@app/companies/models';
 
 @Component({
   selector: 'app-companies-ui',

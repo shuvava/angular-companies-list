@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { CompanyDetailBaseComponent } from '../company-detail-base/company-detail-base.component';
 import { FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Company } from '../../models';
+import { Company } from '@app/companies/models';
 
 @Component({
   selector: 'app-company-detail-dialog',

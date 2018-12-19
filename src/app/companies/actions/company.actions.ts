@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Company } from '../models/company.model';
+import { Company } from '../models';
 import { Update } from '@ngrx/entity';
 
 export enum CompanyActionTypes {

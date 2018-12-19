@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { Company } from '../../models';
+import { Company } from '@app/companies/models';
 import { FormBuilder } from '@angular/forms';
 import { CompanyDetailBaseComponent } from '../company-detail-base/company-detail-base.component';
 
