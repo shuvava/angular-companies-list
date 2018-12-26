@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FormInputComponent } from './form-input/form-input.component';
 
-@NgModule({
+export const CompanyFormsModuleConfig = {
   declarations: [
     FormInputComponent
   ],
@@ -15,5 +15,7 @@ import { FormInputComponent } from './form-input/form-input.component';
     FormsModule,
     ReactiveFormsModule,
   ]
-})
+};
+
+@NgModule(CompanyFormsModuleConfig)
 export class CompanyFormsModule { }
