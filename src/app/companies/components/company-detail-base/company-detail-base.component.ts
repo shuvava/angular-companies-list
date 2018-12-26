@@ -1,7 +1,7 @@
 import { OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { Company } from '../../models';
+import { Company } from '@app/companies/models';
 
 export class CompanyDetailBaseComponent implements OnInit, OnChanges, OnDestroy {
 
@@ -13,6 +13,7 @@ export class CompanyDetailBaseComponent implements OnInit, OnChanges, OnDestroy 
   constructor(protected formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    console.log('testtttttt');
     this.registerForm = this.formBuilder.group({
       id: [null, [Validators.required]],
       name: [null, [Validators.required]],

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { Company } from '../../models';
+import { Company } from '@app/companies/models';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
