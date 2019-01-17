@@ -1,0 +1,18 @@
+{
+  "name": "api_proxy",
+  "version": "1.0.0",
+  "description": "nop client api proxy",
+  "main": "proxy_server.js",
+  "scripts": {
+    "start": "node proxy_server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vladimir shurygin",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.3",
+    "cors": "^2.8.5",
+    "express": "^5.0.0-alpha.7",
+    "http-proxy-middleware": "^0.19.1"
+  }
+}
